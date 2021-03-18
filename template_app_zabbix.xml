@@ -1019,7 +1019,7 @@
         <graph>
             <name>Postfix Error Pie</name>
             <width>900</width>
-            <height>200</height>
+            <height>400</height>
             <yaxismin>0.0000</yaxismin>
             <yaxismax>0.0000</yaxismax>
             <show_work_period>0</show_work_period>
