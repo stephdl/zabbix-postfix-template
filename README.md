@@ -1,7 +1,7 @@
 # zabbix-postfix-template
 Zabbix template for Postfix SMTP server
 
-Works for Zabbix 4.x
+Works for Zabbix 5.X
 
 Forked from http://admin.shamot.cz/?p=424
 
@@ -10,25 +10,31 @@ Forked from http://admin.shamot.cz/?p=424
 * [pygtail](https://pypi.org/project/pygtail/)
 
 # Installation
-    # for Ubuntu / Debian
-    apt-get install pflogsumm
+
+Customised for NethServer, probably workable for CentoS, 
     
     # for CentOS
     yum install postfix-perl-scripts
     
-    cp pygtail.py /usr/sbin/
+    wget https://raw.githubusercontent.com/stephdl/zabbix-postfix-template/master/pygtail.py -O /usr/sbin//pygtail.py
     chmod +x /usr/sbin/pygtail.py
     
-    # ! check MAILLOG path in zabbix-postfix-stats.sh
-    cp zabbix-postfix-stats.sh /usr/bin/
+    wget https://raw.githubusercontent.com/stephdl/zabbix-postfix-template/master/zabbix-postfix-stats.sh -O /usr/bin/zabbix-postfix-stats.sh
     chmod +x /usr/bin/zabbix-postfix-stats.sh
 
-    cp userparameter_postfix.conf /etc/zabbix/zabbix_agentd.d/
+    # zabbix_agent
+    wget https://raw.githubusercontent.com/stephdl/zabbix-postfix-template/master/userparameter_postfix.conf -O /etc/zabbix/zabbix_agentd.d/userparameter_postfix.conf
+    or
+    # zabbix_agent2
+    wget https://raw.githubusercontent.com/stephdl/zabbix-postfix-template/master/userparameter_postfix.conf -O /etc/zabbix/zabbix_agent2.d/userparameter_postfix.conf
     
     # run visudo as root
     Defaults:zabbix !requiretty
-    zabbix ALL=(ALL) NOPASSWD: /usr/bin/zabbix-postfix-stats.sh
+    zabbix ALL=NOPASSWD: /usr/bin/zabbix-postfix-stats.sh
     
     systemctl restart zabbix-agent
+    or
+    systemctl restart zabbix-agent2
 
-Finally import template_app_zabbix.xml and attach it to your host
+Finally import template_app_zabbix.xml and attach it to your host. Go to : https://raw.githubusercontent.com/stephdl/zabbix-postfix-template/master/template_app_zabbix.xml
+do a ctrl+s, save the template to your computer and import it with the zabbix UI (/configuration/Templates/import a template)
