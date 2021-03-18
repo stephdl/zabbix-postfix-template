@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MAILLOG=/var/log/mail.log
+MAILLOG=/var/log/maillog
 PFOFFSETFILE=/tmp/zabbix-postfix-offset.dat
 PFSTATSFILE=/tmp/postfix_statsfile.dat
 TEMPFILE=$(mktemp)
@@ -12,7 +12,8 @@ PFVALS=( 'received' 'delivered' 'forwarded' 'deferred' 'bounced' 'rejected' 'hel
 
 # write result of running this script
 write_result () {
-
+        
+        rm "${TEMPFILE}"
         echo "$2"
         exit $1
 
